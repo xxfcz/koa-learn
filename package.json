@@ -1,0 +1,26 @@
+{
+  "name": "power-inspection-server",
+  "version": "1.0.0",
+  "description": "电力巡检系统之服务端",
+  "main": "index.js",
+  "dependencies": {
+    "koa": "^2.5.1",
+    "koa-route": "^3.2.0",
+    "koa-static": "^4.0.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xxfcz/power-inspection-server.git"
+  },
+  "author": "Xiao Xuefeng",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xxfcz/power-inspection-server/issues"
+  },
+  "homepage": "https://github.com/xxfcz/power-inspection-server#readme"
+}

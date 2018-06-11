@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "koa": "^2.5.1",
+    "koa-body": "^4.0.1",
     "koa-route": "^3.2.0",
     "koa-static": "^4.0.3"
   },

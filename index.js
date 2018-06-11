@@ -4,8 +4,10 @@ const fs = require('fs')
 const route = require('koa-route')
 const static = require('koa-static')
 const path = require('path')
+const KoaBody = require('koa-body')
 
 app.use(static(path.join(__dirname, 'static')))
+app.use(KoaBody({ multipart: true }))
 
 const logger = (ctx, next) => {
   console.log(`${Date.now()} ${ctx.request.method} ${ctx.request.url}`)
@@ -56,17 +58,29 @@ const error = ctx => {
   ctx.throw(500)
 }
 
-const pv = ctx =>{
+const pv = ctx => {
   let views = Number(ctx.cookies.get('views') || 0)
   views += 1
   ctx.cookies.set('views', views)
   ctx.response.body = views + ' Views'
 }
 
+const form = ctx => {
+  const body = ctx.request.body
+  console.dir(body)
+  if (!body.name) {
+    ctx.throw('name required')
+  }
+  ctx.response.body = {
+    name: body.name
+  }
+}
+
 app.use(route.get('/', main))
 app.use(route.get('/api', api))
-app.use(route.get('/error', error))
 app.use(route.get('/pv', pv))
+app.use(route.post('/form', form))
+app.use(route.get('/error', error))
 
 app.listen(3000)
 console.log('Listening on port 3000...')

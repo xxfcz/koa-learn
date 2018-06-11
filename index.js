@@ -56,9 +56,17 @@ const error = ctx => {
   ctx.throw(500)
 }
 
+const pv = ctx =>{
+  let views = Number(ctx.cookies.get('views') || 0)
+  views += 1
+  ctx.cookies.set('views', views)
+  ctx.response.body = views + ' Views'
+}
+
 app.use(route.get('/', main))
 app.use(route.get('/api', api))
 app.use(route.get('/error', error))
+app.use(route.get('/pv', pv))
 
 app.listen(3000)
 console.log('Listening on port 3000...')

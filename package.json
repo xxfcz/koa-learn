@@ -1,7 +1,7 @@
 {
-  "name": "power-inspection-server",
+  "name": "koa-learn",
   "version": "1.0.0",
-  "description": "电力巡检系统之服务端",
+  "description": "学习koa2",
   "main": "index.js",
   "dependencies": {
     "koa": "^2.5.1",

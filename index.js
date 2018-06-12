@@ -5,8 +5,9 @@ const route = require('koa-route')
 const static = require('koa-static')
 const path = require('path')
 const KoaBody = require('koa-body')
+const os = require('os')
 
-app.use(static(path.join(__dirname, 'static')))
+app.use(static(path.join(__dirname, 'public')))
 app.use(KoaBody({ multipart: true }))
 
 const logger = (ctx, next) => {
@@ -76,11 +77,29 @@ const form = ctx => {
   }
 }
 
+const upload = async function(ctx) {
+  const filePaths = []
+  const files = ctx.request.files || {} // 使用 ctx.request.files 取得上传的文件列表
+
+  for (let key in files) {
+    const file = files[key]
+    let localPath = path.join(__dirname, localPath, 'public/upload')
+    localPath = path.join(localPath, file.name)
+    const reader = fs.createReadStream(file.path)  // 从已暂存的文件中读
+    const writer = fs.createWriteStream(localPath) // 写入目标文件
+    reader.pipe(writer)
+    filePaths.push(localPath)
+  }
+
+  ctx.body = filePaths
+}
+
 app.use(route.get('/', main))
 app.use(route.get('/api', api))
 app.use(route.get('/pv', pv))
 app.use(route.post('/form', form))
 app.use(route.get('/error', error))
+app.use(route.post('/upload', upload))
 
 app.listen(3000)
 console.log('Listening on port 3000...')

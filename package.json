@@ -16,12 +16,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xxfcz/power-inspection-server.git"
+    "url": "git+https://github.com/xxfcz/koa-learn.git"
   },
   "author": "Xiao Xuefeng",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/xxfcz/power-inspection-server/issues"
+    "url": "https://github.com/xxfcz/koa-learn/issues"
   },
-  "homepage": "https://github.com/xxfcz/power-inspection-server#readme"
+  "homepage": "https://github.com/xxfcz/koa-learn#readme"
 }
